@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Favorites</title>
+    <script src="../vendor/angular.min.js"></script>
+    <script src="../vendor/angular-route.min.js"></script>
+    <script src="../scripts/clientapp.js"></script>
+    <script src="../scripts/factories/dataFactory.js"></script>
+    <script src="../scripts/controllers/petController.js"></script>
+    <link rel="stylesheet" href="../vendor/bootstrap.min.css" />
+    <link rel="stylesheet" href="../styles/main.css" />
+</head>
+
+<body ng-app="petApp">
+  <div ng-controller="PetController">
+    <header ng-include="'/views/templates/header.html'" ng-click="playMusic()" class="jumbotron text-center heading"></header>
+    <div ng-include="'/views/templates/nav.html'"></div>
+        <div class="container">
+          <h4 class="favcount">Favorites: {{favCount}}</h4>
+            <div ng-repeat="pet in favorites | orderBy: 'animal'">
+                <div class="flex favcontainer">
+                    <div class="namecontainer" >
+                        <h4>{{pet.name}}</h4>
+                        <h5>ID: {{pet.id}}</h5>
+                        <img class="favimage" ng-src="{{pet.image}}" />
+                        <button class="delete btn btn-warning" ng-click="deletePet(pet._id)">Delete Pet?</button>
+                    </div>
+
+                    <div class="flexone">
+                        <p>
+                            {{pet.description}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer ng-include="'/views/templates/footer.html'" class="footing"></footer>
+
+</body>
+
+</html>
