@@ -108,8 +108,10 @@ app.controller('PetController', ['$scope', '$http', 'DataFactory', function($sco
     $scope.deletePet = function (id) {
           $scope.dataFactory.factoryDelFav(id).then(function (){
             console.log("Deleted!");
-            $scope.favorites = $scope.dataFactory.factoryGetFavorites();
-            $scope.favCount = $scope.favorites.length;
+            $scope.dataFactory.factoryRefreshFav().then(function() {
+              $scope.favorites = $scope.dataFactory.factoryGetFavorites();
+              $scope.favCount = $scope.favorites.length;
+            });
           });
     };
 
